@@ -1,0 +1,17 @@
+# Flask API Dockerfile
+FROM python:3.9-slim
+
+# Set work directory
+WORKDIR /app
+
+# Copy project files
+COPY /app /app
+
+# Install dependencies
+RUN pip install flask
+
+# Expose the Flask port
+EXPOSE 5000
+
+# Run the Flask app
+CMD ["python", "api.py"]

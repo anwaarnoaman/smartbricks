@@ -1,0 +1,17 @@
+# Gradio App Dockerfile
+FROM python:3.9-slim
+
+# Set work directory
+WORKDIR /app
+
+# Copy project files
+COPY /app /app
+
+# Install dependencies
+RUN pip install gradio requests
+
+# Expose the Gradio port
+EXPOSE 7860
+ENV GRADIO_SERVER_NAME="0.0.0.0"
+# Run the Gradio app
+CMD ["python", "app.py"]

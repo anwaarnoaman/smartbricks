@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  flask-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.Flask
+    ports:
+      - "5599:5000"
+    container_name: flask-api
+    networks:
+      - app-network
+
+  gradio-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.Gradio
+    ports:
+      - "5588:7860"
+    container_name: gradio-app
+    depends_on:
+      - flask-api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
